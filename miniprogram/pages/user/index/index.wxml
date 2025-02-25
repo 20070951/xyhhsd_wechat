@@ -1,0 +1,58 @@
+<view class="container">
+  <!-- 用户信息 -->
+  <view class="user-info">
+    <view class="user-info-bg"></view>
+    <view class="user-info-content">
+      <view class="avatar-wrapper">
+        <image class="avatar" src="{{userInfo.avatarUrl || '/assets/images/default-avatar.png'}}" mode="aspectFill"/>
+        <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar" wx:if="{{!userInfo.avatarUrl}}">
+          点击设置头像
+        </button>
+      </view>
+      <view class="nickname">{{userInfo.nickName || '未登录'}}</view>
+      <button class="login-btn" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" wx:if="{{!userInfo.nickName}}">
+        点击登录
+      </button>
+    </view>
+  </view>
+
+  <!-- 我的活动 -->
+  <view class="section">
+    <view class="section-title">我的活动</view>
+    <view class="grid">
+      <view class="grid-item" bindtap="onNavigateTo" data-url="/pages/user/activities/created">
+        <mp-icon icon="add" size="{{32}}"></mp-icon>
+        <text>我发起的</text>
+        <text class="count">{{stats.createdCount || 0}}</text>
+      </view>
+      <view class="grid-item" bindtap="onNavigateTo" data-url="/pages/user/activities/joined">
+        <mp-icon icon="group" size="{{32}}"></mp-icon>
+        <text>我参与的</text>
+        <text class="count">{{stats.joinedCount || 0}}</text>
+      </view>
+      <view class="grid-item" bindtap="onNavigateTo" data-url="/pages/user/activities/collected">
+        <mp-icon icon="star" size="{{32}}"></mp-icon>
+        <text>我收藏的</text>
+        <text class="count">{{stats.collectedCount || 0}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="section">
+    <mp-cells>
+      <mp-cell title="个人资料" link hover value="设置" bindtap="onNavigateTo" data-url="/pages/user/profile/index">
+        <mp-icon slot="icon" icon="me" size="{{24}}"></mp-icon>
+      </mp-cell>
+      <mp-cell title="消息通知" link hover value="{{stats.unreadCount || 0}}" bindtap="onNavigateTo" data-url="/pages/user/notifications/index">
+        <mp-icon slot="icon" icon="bell" size="{{24}}"></mp-icon>
+      </mp-cell>
+      <mp-cell title="意见反馈" link hover bindtap="onNavigateTo" data-url="/pages/user/feedback/index">
+        <mp-icon slot="icon" icon="help" size="{{24}}"></mp-icon>
+      </mp-cell>
+      <mp-cell title="关于我们" link hover bindtap="onNavigateTo" data-url="/pages/user/about/index">
+        <mp-icon slot="icon" icon="info" size="{{24}}"></mp-icon>
+      </mp-cell>
+    </mp-cells>
+  </view>
+</view> 

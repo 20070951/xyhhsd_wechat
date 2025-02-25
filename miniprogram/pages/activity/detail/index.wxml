@@ -1,0 +1,87 @@
+<view class="container">
+  <!-- 活动封面图 -->
+  <view class="cover-container">
+    <image src="{{activity.coverImage}}" mode="aspectFill" class="cover-image"/>
+    <view class="cover-info">
+      <view class="title">{{activity.title}}</view>
+      <view class="status">
+        <text class="price">¥{{activity.price}}</text>
+        <text class="signup-count">已报名 {{activity.signupCount}}/{{activity.maxCount}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 活动信息 -->
+  <view class="info-section">
+    <view class="info-item">
+      <mp-icon icon="time" size="{{20}}"></mp-icon>
+      <text>活动时间：{{activity.time}}</text>
+    </view>
+    <view class="info-item">
+      <mp-icon icon="location" size="{{20}}"></mp-icon>
+      <text>活动地点：{{activity.location}}</text>
+    </view>
+    <view class="info-item">
+      <mp-icon icon="group" size="{{20}}"></mp-icon>
+      <text>人数上限：{{activity.maxCount}}人</text>
+    </view>
+    <view class="info-item">
+      <mp-icon icon="time" size="{{20}}"></mp-icon>
+      <text>报名截止：{{activity.deadline}}</text>
+    </view>
+  </view>
+
+  <!-- 活动详情 -->
+  <view class="detail-section">
+    <view class="section-title">活动详情</view>
+    <view class="detail-content">{{activity.description}}</view>
+  </view>
+
+  <!-- 报名列表 -->
+  <view class="signup-section">
+    <view class="section-title">报名列表</view>
+    <view class="signup-list">
+      <view class="signup-item" wx:for="{{activity.signupList}}" wx:key="id">
+        <image src="{{item.avatar}}" class="avatar"/>
+        <view class="user-info">
+          <text class="nickname">{{item.nickname}}</text>
+          <text class="signup-time">{{item.signupTime}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="footer">
+    <view class="action-group">
+      <button class="action-btn collect {{activity.isCollected ? 'active' : ''}}" bindtap="onCollect">
+        <mp-icon icon="star" color="{{activity.isCollected ? '#07C160' : '#999'}}" size="{{24}}"></mp-icon>
+        <text>收藏</text>
+      </button>
+      <button class="action-btn share" open-type="share">
+        <mp-icon icon="share" size="{{24}}"></mp-icon>
+        <text>分享</text>
+      </button>
+    </view>
+    <button class="signup-btn" type="primary" bindtap="onSignup" disabled="{{activity.signupCount >= activity.maxCount}}">
+      {{activity.signupCount >= activity.maxCount ? '已满员' : '立即报名'}}
+    </button>
+  </view>
+
+  <!-- 报名弹窗 -->
+  <mp-dialog title="报名信息" show="{{showSignupDialog}}" bindbuttontap="onSignupDialogTap" buttons="{{[{text: '取消'}, {text: '确认报名'}]}}">
+    <mp-form id="signupForm" rules="{{rules}}" models="{{signupForm}}">
+      <mp-cells>
+        <mp-cell title="姓名" prop="name">
+          <input value="{{signupForm.name}}" placeholder="请输入姓名" bindinput="onInputName"/>
+        </mp-cell>
+        <mp-cell title="手机号" prop="phone">
+          <input value="{{signupForm.phone}}" type="number" placeholder="请输入手机号" bindinput="onInputPhone"/>
+        </mp-cell>
+        <mp-cell title="备注" prop="remark">
+          <textarea value="{{signupForm.remark}}" placeholder="请输入备注信息" bindinput="onInputRemark" style="height: 100rpx;"/>
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+  </mp-dialog>
+</view> 

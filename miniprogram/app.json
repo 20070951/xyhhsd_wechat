@@ -1,0 +1,46 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/activity/create/index",
+        "pages/activity/detail/index",
+        "pages/activity/list/index",
+        "pages/user/index/index"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#07C160",
+        "navigationBarTitleText": "踢球报名",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+        "color": "#999999",
+        "selectedColor": "#07C160",
+        "backgroundColor": "#ffffff",
+        "borderStyle": "black",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "assets/images/home.png",
+                "selectedIconPath": "assets/images/home-active.png"
+            },
+            {
+                "pagePath": "pages/activity/list/index",
+                "text": "活动",
+                "iconPath": "assets/images/activity.png",
+                "selectedIconPath": "assets/images/activity-active.png"
+            },
+            {
+                "pagePath": "pages/user/index/index",
+                "text": "我的",
+                "iconPath": "assets/images/user.png",
+                "selectedIconPath": "assets/images/user-active.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "useExtendedLib": {
+        "weui": true
+    }
+}

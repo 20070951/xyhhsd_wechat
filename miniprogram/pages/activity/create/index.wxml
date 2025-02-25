@@ -1,0 +1,52 @@
+<view class="container">
+  <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    <mp-cells title="基本信息">
+      <mp-cell title="活动标题" prop="title">
+        <input value="{{formData.title}}" placeholder="请输入活动标题" bindinput="onInputTitle"/>
+      </mp-cell>
+
+      <mp-cell title="活动时间" prop="time">
+        <picker mode="multiSelector" value="{{dateTimeIndex}}" range="{{dateTimeArray}}" bindchange="onDateTimeChange">
+          <view class="picker">{{formData.time || '请选择活动时间'}}</view>
+        </picker>
+      </mp-cell>
+
+      <mp-cell title="活动地点" prop="location">
+        <input value="{{formData.location}}" placeholder="请输入活动地点" bindinput="onInputLocation"/>
+      </mp-cell>
+
+      <mp-cell title="人数上限" prop="maxCount">
+        <input type="number" value="{{formData.maxCount}}" placeholder="请输入人数上限" bindinput="onInputMaxCount"/>
+      </mp-cell>
+
+      <mp-cell title="报名费用" prop="price">
+        <input type="digit" value="{{formData.price}}" placeholder="请输入报名费用" bindinput="onInputPrice"/>
+      </mp-cell>
+    </mp-cells>
+
+    <mp-cells title="活动图片">
+      <mp-cell>
+        <view class="uploader">
+          <view class="upload-preview" wx:if="{{formData.coverImage}}">
+            <image src="{{formData.coverImage}}" mode="aspectFill"/>
+            <mp-icon icon="close" color="red" size="{{20}}" bindtap="onRemoveImage"/>
+          </view>
+          <view class="upload-button" bindtap="onChooseImage" wx:else>
+            <mp-icon icon="add" size="{{30}}"/>
+            <text>上传图片</text>
+          </view>
+        </view>
+      </mp-cell>
+    </mp-cells>
+
+    <mp-cells title="活动详情">
+      <mp-cell>
+        <textarea value="{{formData.description}}" placeholder="请输入活动详情说明" bindinput="onInputDescription" maxlength="500" style="height: 200rpx;"/>
+      </mp-cell>
+    </mp-cells>
+  </mp-form>
+
+  <view class="footer">
+    <button class="submit-btn" type="primary" bindtap="onSubmit">发布活动</button>
+  </view>
+</view> 

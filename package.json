@@ -1,0 +1,25 @@
+{
+    "name": "football-signup",
+    "version": "1.0.0",
+    "description": "足球活动报名小程序",
+    "scripts": {
+        "compile": "./node_modules/typescript/bin/tsc",
+        "tsc": "node ./node_modules/typescript/lib/tsc.js"
+    },
+    "keywords": [
+        "微信小程序",
+        "足球",
+        "报名"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "mobx-miniprogram": "^4.13.2",
+        "mobx-miniprogram-bindings": "^2.1.5",
+        "weui-miniprogram": "^1.2.7"
+    },
+    "devDependencies": {
+        "typescript": "^4.9.5",
+        "miniprogram-api-typings": "^3.9.1"
+    }
+}

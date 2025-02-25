@@ -1,0 +1,63 @@
+<view class="container">
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <mp-searchbar placeholder="搜索活动" bindsearch="onSearch"></mp-searchbar>
+  </view>
+
+  <!-- 轮播图 -->
+  <view class="swiper-container">
+    <swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{500}}">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <image src="{{item.imageUrl}}" mode="aspectFill" class="slide-image"/>
+      </swiper-item>
+    </swiper>
+  </view>
+
+  <!-- 快速操作区 -->
+  <view class="quick-actions">
+    <view class="action-item" bindtap="onCreateActivity">
+      <image src="/assets/images/create.png" mode="aspectFit"/>
+      <text>发起活动</text>
+    </view>
+    <view class="action-item" bindtap="onJoinActivity">
+      <image src="/assets/images/join.png" mode="aspectFit"/>
+      <text>参与活动</text>
+    </view>
+    <view class="action-item" bindtap="onMyActivities">
+      <image src="/assets/images/my.png" mode="aspectFit"/>
+      <text>我的活动</text>
+    </view>
+  </view>
+
+  <!-- 活动列表 -->
+  <view class="activity-list">
+    <view class="section-title">热门活动</view>
+    <view class="activity-items">
+      <view class="activity-item" wx:for="{{activities}}" wx:key="id" bindtap="onActivityTap" data-id="{{item.id}}">
+        <image src="{{item.coverImage}}" mode="aspectFill" class="activity-image"/>
+        <view class="activity-info">
+          <view class="activity-title">{{item.title}}</view>
+          <view class="activity-meta">
+            <view class="meta-item">
+              <mp-icon icon="time" size="{{14}}"></mp-icon>
+              <text>{{item.time}}</text>
+            </view>
+            <view class="meta-item">
+              <mp-icon icon="location" size="{{14}}"></mp-icon>
+              <text>{{item.location}}</text>
+            </view>
+          </view>
+          <view class="activity-status">
+            <text class="price">¥{{item.price}}</text>
+            <text class="signup-count">已报名 {{item.signupCount}}/{{item.maxCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部加载更多 -->
+  <view class="loading-more" wx:if="{{hasMore}}">
+    <mp-loading type="dot-gray" show="{{true}}"></mp-loading>
+  </view>
+</view> 

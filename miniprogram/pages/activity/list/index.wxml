@@ -1,0 +1,59 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <mp-searchbar placeholder="搜索活动" bindsearch="onSearch"></mp-searchbar>
+  </view>
+
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <view class="filter-item {{currentFilter === 'all' ? 'active' : ''}}" bindtap="onFilterTap" data-type="all">
+      全部
+    </view>
+    <view class="filter-item {{currentFilter === 'newest' ? 'active' : ''}}" bindtap="onFilterTap" data-type="newest">
+      最新
+    </view>
+    <view class="filter-item {{currentFilter === 'popular' ? 'active' : ''}}" bindtap="onFilterTap" data-type="popular">
+      热门
+    </view>
+  </view>
+
+  <!-- 活动列表 -->
+  <view class="activity-list">
+    <view class="activity-item" wx:for="{{activities}}" wx:key="id" bindtap="onActivityTap" data-id="{{item.id}}">
+      <image src="{{item.coverImage}}" mode="aspectFill" class="activity-image"/>
+      <view class="activity-info">
+        <view class="activity-title">{{item.title}}</view>
+        <view class="activity-meta">
+          <view class="meta-item">
+            <mp-icon icon="time" size="{{14}}"></mp-icon>
+            <text>{{item.time}}</text>
+          </view>
+          <view class="meta-item">
+            <mp-icon icon="location" size="{{14}}"></mp-icon>
+            <text>{{item.location}}</text>
+          </view>
+        </view>
+        <view class="activity-status">
+          <text class="price">¥{{item.price}}</text>
+          <text class="signup-count">已报名 {{item.signupCount}}/{{item.maxCount}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="loading-more" wx:if="{{hasMore}}">
+    <mp-loading type="dot-gray" show="{{true}}"></mp-loading>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{activities.length === 0}}">
+    <image src="/assets/images/empty.png" mode="aspectFit"/>
+    <text>暂无活动</text>
+  </view>
+
+  <!-- 创建活动按钮 -->
+  <view class="create-btn" bindtap="onCreateActivity">
+    <mp-icon icon="add" color="#fff" size="{{20}}"></mp-icon>
+  </view>
+</view> 
